@@ -43,5 +43,22 @@ pipeline {
                 junit 'result-rest.xml'
             }
         }
+
+        stage('Promote') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'github-token', usernameVariable: 'GIT_USER', passwordVariable: 'GIT_TOKEN')]) {
+                    sh '''
+                        git config user.email "jenkins@unir.com"
+                        git config user.name "Jenkins CI"
+                        git checkout -- samconfig.toml
+                        git fetch origin
+                        git checkout -B master origin/master
+                        git merge origin/develop --no-edit
+                        git push https://${GIT_USER}:${GIT_TOKEN}@github.com/adabaja/unir_cp1.4.git master
+                    '''
+                }
+            }
+        }
+
     }
 }
