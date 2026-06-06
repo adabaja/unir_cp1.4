@@ -199,4 +199,15 @@ class TestApi(unittest.TestCase):
             response.status_code, 404, "Error en la petición API a {url}"
         )
         print('End - integration test Delete TODO')
+
+    @pytest.mark.readonly
+    def test_api_listtodos_readonly(self):
+        print('---------------------------------------')
+        print('Starting - integration test List TODO (readonly)')
+        url = BASE_URL + "/todos"
+        response = requests.get(url)
+        self.assertEqual(
+            response.status_code, 200, "Error en la petición API a {url}"
+        )
+        print('End - integration test List TODO (readonly)')
     

@@ -50,6 +50,7 @@ pipeline {
                     sh '''
                         git config user.email "jenkins@unir.com"
                         git config user.name "Jenkins CI"
+                        git config merge.ours.driver true
                         git checkout -- samconfig.toml
                         git fetch origin
                         git checkout -B master origin/master
