@@ -52,7 +52,7 @@ pipeline {
                         git config user.name "Jenkins CI"
                         git config merge.ours.driver true
                         git checkout -- samconfig.toml
-                        git fetch origin
+                        git fetch origin +refs/heads/master:refs/remotes/origin/master
                         git checkout -B master origin/master
                         git merge origin/develop --no-edit
                         git push https://${GIT_USER}:${GIT_TOKEN}@github.com/adabaja/unir_cp1.4.git master
