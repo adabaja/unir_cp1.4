@@ -41,9 +41,9 @@ pipeline {
             steps {
                 sh 'whoami; hostname'
                 sh '''
-                    export BASE_URL=$(aws cloudformation describe-stacks --stack-name todo-list-aws-staging --region us-east-1 --query "Stacks[0].Outputs[?OutputKey=='BaseUrlApi'].OutputValue" --output text)
+                    export BASE_URL=$(aws cloudformation describe-stacks --stack-name todo-list-aws-production --region us-east-1 --query "Stacks[0].Outputs[?OutputKey=='BaseUrlApi'].OutputValue" --output text)
                     echo "BASE_URL=$BASE_URL"
-                    python3 -m pytest --junitxml=result-rest.xml test/integration/todoApiTest.py
+                    python3 -m pytest -m readonly --junitxml=result-rest.xml test/integration/todoApiTest.py
                 '''
                 junit 'result-rest.xml'
             }
