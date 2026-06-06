@@ -31,7 +31,7 @@ pipeline {
                 unstash 'samconfig'
                 sh '''
                     sam build
-                    sam deploy --config-env staging --no-confirm-changeset --no-fail-on-empty-changeset --region us-east-1
+                    sam deploy --config-env production --no-confirm-changeset --no-fail-on-empty-changeset --region us-east-1
                 '''
             }
         }
