@@ -25,7 +25,7 @@ pipeline {
         }
 
         stage('Deploy') {
-            agent { label 'agent1' }
+            agent { label 'agent2' }
             steps {
                 sh 'whoami; hostname'
                 unstash 'samconfig'
@@ -37,7 +37,7 @@ pipeline {
         }
 
         stage('Rest Test') {
-            agent { label 'agent2' }
+            agent { label 'agent1' }
             steps {
                 sh 'whoami; hostname'
                 sh '''
@@ -50,7 +50,7 @@ pipeline {
         }
 
         stage('Promote') {
-            agent { label 'agent1' }
+            agent { label 'agent2' }
             steps {
                 sh 'whoami; hostname'
                 withCredentials([usernamePassword(credentialsId: 'github-token', usernameVariable: 'GIT_USER', passwordVariable: 'GIT_TOKEN')]) {
