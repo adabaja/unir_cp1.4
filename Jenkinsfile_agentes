@@ -4,7 +4,7 @@ pipeline {
     stages {
 
         stage('Get Code') {
-            agent { label 'agent1' }
+            agent { label 'agent3' }
             steps {
                 sh 'whoami; hostname'
                 sh 'curl -L -o samconfig.toml https://raw.githubusercontent.com/adabaja/todo-list-aws-config/staging/samconfig.toml'
@@ -50,7 +50,7 @@ pipeline {
         }
 
         stage('Promote') {
-            agent { label 'agent2' }
+            agent { label 'agent3' }
             steps {
                 sh 'whoami; hostname'
                 withCredentials([usernamePassword(credentialsId: 'github-token', usernameVariable: 'GIT_USER', passwordVariable: 'GIT_TOKEN')]) {
