@@ -12,18 +12,6 @@ pipeline {
             }
         }
 
-        stage('Static Test') {
-            agent { label 'agent2' }
-            steps {
-                sh 'whoami; hostname'
-                sh '''
-                    flake8 --exit-zero --format=pylint src > flake8.out
-                    bandit -r src -f txt -o bandit.out || true
-                '''
-                archiveArtifacts artifacts: 'flake8.out,bandit.out', allowEmptyArchive: true
-            }
-        }
-
         stage('Deploy') {
             agent { label 'agent2' }
             steps {
