@@ -1,5 +1,6 @@
+# Este archivo es obsoleto, y se puede eliminar
 # se toma del https://github.com/adabaja/todo-list-aws-config.git
-"""
+
 version = 0.1
 
 [staging.deploy.parameters]
@@ -17,4 +18,3 @@ s3_prefix = "todo-list-aws"
 region = "us-east-1"
 capabilities = "CAPABILITY_IAM"
 parameter_overrides = "Stage=\"production\""
-"""
