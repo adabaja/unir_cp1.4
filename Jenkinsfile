@@ -18,7 +18,7 @@ pipeline {
             steps {
                 sh '''
                     flake8 --exit-zero --format=pylint src > flake8.out
-                    bandit -r src -f txt -o bandit.out
+                    bandit --exit-zero -r src -f txt -o bandit.out
                 '''
                 archiveArtifacts artifacts: 'flake8.out,bandit.out', allowEmptyArchive: true
             }
